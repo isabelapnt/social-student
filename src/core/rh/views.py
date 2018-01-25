@@ -70,7 +70,6 @@ def see_perfil(request):
 def recover(request):
 	form = RecoverForm(request.POST)
 	if request.method == 'POST':
-		print request.method
 		if form.is_valid():
 			try:
 				aluno = Aluno.objects.get(email = request.POST.get('email'))
