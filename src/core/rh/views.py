@@ -39,7 +39,7 @@ def save_perfil(request):
 		unidade = Unidade.objects.get(id = request.POST.get('unidade'))
 		curso = Curso.objects.get(id = request.POST.get('curso'))
 		if not Aluno.objects.filter(email=request.session["email"]):
-			Aluno.objects.create(email=request.session["email"], first_name=request.session["first_name"], last_name=request.session["last_name"], curso=curso, unidade=unidade, matricula="")
+			Aluno.objects.create(email=request.session["email"], first_name=request.session["first_name"], last_name=request.session["last_name"], curso=curso, unidade=unidade)
 		else:
 			aluno = Aluno.objects.get(email=request.session["email"])
 			aluno.curso = curso
@@ -74,7 +74,6 @@ def cadastro(request):
 					first_name = first_name,
 					last_name = last_name,
 					email = email,
-					matricula = "",
 					unidade = unidade,
 					curso = curso,
 					password = senha)

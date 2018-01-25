@@ -1,4 +1,6 @@
+{% load widget_tweaks %}
 {% load compress static %}
+
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -12,65 +14,33 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/favicon.png' %}">
     <title>Social Student</title>
+    <!-- Bootstrap Core CSS -->
+    <link href=" {% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'css/style_login.css' %}" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="{% static 'css/colors/blue.css' %}" id="theme" rel="stylesheet">
 
-        <!-- Bootstrap Core CSS -->
-        <link href=" {% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-        <!-- chartist CSS -->
-        <link href=" {% static 'assets/plugins/chartist-js/dist/chartist.min.css' %}" rel="stylesheet">
-        <link href=" {% static 'assets/plugins/chartist-js/dist/chartist-init.css' %}" rel="stylesheet">
-        <link href=" {% static 'assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css' %}" rel="stylesheet">
-        <!--This page css - Morris CSS -->
-        <link href=" {% static 'assets/plugins/c3-master/c3.min.css' %}" rel="stylesheet">
-        <!-- Custom CSS -->
-        <link href="{% static 'css/style.css' %}" rel="stylesheet">
-        <!-- You can change the theme colors from here -->
-        <link href="{% static 'css/colors/blue.css' %}" id="theme" rel="stylesheet">
-        <link href="{% static 'css/login.css' %}" rel="stylesheet">
 </head>
 
-
-<body class="fix-header fix-sidebar card-no-border">
-    {% block body %}
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
             <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
     </div>
-    <div id="main-wrapper">
-        <header class="topbar">
-            <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
-                <!-- ============================================================== -->
-                <!-- Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">
-                        <!-- Logo icon --><b>
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            
-                            <!-- Light Logo icon -->
-                            <img src="{% static 'assets/images/logo-light-icon.png' %}" alt="homepage" class="light-logo" />
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text --><span class="light-logo" > <b style="font-weight: 600; color: white">Social</b>Student</span> </a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                
-            </nav>
-        </header>
-        
-
-        <div class="page-wrapper" style="margin-left: 0 !important">
-            <div class="container-fluid">
-                {% block conteudo %}
-
-                {% endblock %}
-            </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <section id="wrapper">
+      <div class="login-register" style="background-image:url({% static 'assets/images/background/login-register.jpg' %});">        
+            {% block conteudo %}
+            {% endblock %}
         </div>
-        <footer class="footer" style="left: 0 !important"> © 2017 Material Pro Admin by wrappixel.com </footer>
-    </div>
-    {% endblock %}
-    
+        
+    </section>
     <script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{% static 'assets/plugins/bootstrap/js/tether.min.js' %}"></script>
@@ -98,6 +68,7 @@
     <script src="{% static 'assets/plugins/c3-master/c3.min.js' %}"></script>
     <!-- Chart JS -->
     <script src="{% static 'js/dashboard1.js' %}"></script>
+
 </body>
 
 </html>

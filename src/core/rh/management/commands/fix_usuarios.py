@@ -31,7 +31,6 @@ class Command(BaseCommand):
 			email="Aluno_" + str(curso.id) + "@email.com",
 			password="123",
 			celular="(71)99999999",
-			matricula="255555545",
 			curso = curso,
 			idade=22,
 			unidade = curso.unidade,

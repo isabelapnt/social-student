@@ -32,11 +32,11 @@ class Unidade(Endereco):
         blank=True,
         upload_to='uploads/unidade/img/',
     )
-    thumbnail = models.ImageField(
-        null=True,
-        blank=True,
-        upload_to='uploads/unidade/img/thumbnail',
-    )
+    # thumbnail = models.ImageField(
+    #     null=True,
+    #     blank=True,
+    #     upload_to='uploads/unidade/img/thumbnail',
+    # )
 
     def __unicode__(self):
         return u"{nome}".format(nome =self.nome)
@@ -99,7 +99,7 @@ class Aluno(Usuario):
 		verbose_name_plural = u'Aluno'
 		app_label = "rh"
 
-	matricula = models.TextField(max_length=20)
+	# matricula = models.TextField(max_length=20)
 	idade = models.IntegerField(default=18)
 	curso = models.ForeignKey(Curso)
 

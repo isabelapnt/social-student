@@ -7,7 +7,7 @@ from core.tag.models import Tags
 # Create your models here.
 class Anexos(models.Model):
     class Meta:
-        unique_together = ('tag', 'codigo')
+        # unique_together = ('tag', 'codigo')
         verbose_name = u'Anexo'
         verbose_name_plural = u'Anexos'
         app_label = "anexo"
@@ -15,7 +15,7 @@ class Anexos(models.Model):
     documento = models.FileField(upload_to='documents/')
     titulo = models.CharField(max_length=200, verbose_name=u"Titulo")
     servico = models.ForeignKey(Servico)
-    tag = models.ForeignKey(Tags)
+    # tag = models.ForeignKey(Tags)
     codigo = models.CharField(max_length=200, verbose_name=u"Código", null=True,
         blank=True,)
 
