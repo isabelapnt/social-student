@@ -18,7 +18,7 @@ SECRET_KEY = config('SECRET_KEY')
 # DEBUG = config('DEBUG', default=True, cast=bool)
 DEBUG = True
 
-# django-compress
+
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = False
 COMPRESS_STORAGE = "django.contrib.staticfiles.storage.CachedStaticFilesStorage"
