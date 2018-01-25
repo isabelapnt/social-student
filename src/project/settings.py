@@ -15,8 +15,8 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 SECRET_KEY = config('SECRET_KEY')
 
-# DEBUG = config('DEBUG', default=True, cast=bool)
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
+# DEBUG = True
 
 
 COMPRESS_ENABLED = True
