@@ -49,3 +49,28 @@ class PerfilForm(forms.ModelForm):
             self.add_error("unidade", ValidationError('Campo unidade é obrigatório'))
         if cleaned_data.get("curso") == "":
             self.add_error("curso", ValidationError('Campo curso é obrigatório'))
+
+
+class RecoverForm(forms.ModelForm):
+
+    class Meta:
+        model = Aluno
+
+        fields = [
+                'email',
+                ]
+
+    email = forms.EmailField(required=True,
+                             max_length=50,
+                             widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':"E-mail"}))
+    def clean(self):
+
+        cleaned_data = super(RecoverForm, self).clean()
+        if cleaned_data.get("email") == "":
+            error = "Campo e-mail é obrigatório."
+            self.add_error('email', error)
+        if not Aluno.objects.filter(email = cleaned_data.get("email")):
+            error = "Não há usuário cadastrado com esse email."
+            self.add_error('email', error)      
+
+           

@@ -9,7 +9,16 @@ from core.rh.models import Unidade, Curso, Aluno, Usuario
 from core.rh.forms import PerfilForm
 from core.rh.decorators import login_required_custom
 from dashboard.forms import RegisterForm, LoginForm
+from core.rh.forms import RecoverForm
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
+from django.core.mail import EmailMessage
+import random, string
+
+recover_msg = "Olá {full_name}, \n\
+            Nós recebemos seu pedido de redefinição de senha.\n\
+            Aqui estpa sua nova senha: {new_password}. \n\
+            Obrigado por fazer parte desse projeto. \n\n\
+            Social Student."
 
 @login_required
 def perfil(request):
@@ -57,6 +66,26 @@ def see_perfil(request):
 
 	return HttpResponse(template.render(context, request))
 
+
+def recover(request):
+	form = RecoverForm(request.POST)
+	if request.method == 'POST':
+		print request.method
+		if form.is_valid():
+			try:
+				aluno = Aluno.objects.get(email = request.POST.get('email'))
+
+				new_password = ''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(8)])
+				aluno.set_password(new_password)
+				aluno.save()
+				body = recover_msg.format(full_name=aluno.full_name(), new_password=new_password)
+				email = EmailMessage('Nova Senha', body, to=[aluno.email])
+				email.send()
+				return HttpResponseRedirect("/")
+			except ValidationError as validationError:
+				for field, errors in validationError.message_dict.iteritems():
+					form.add_error(field, errors[0])
+	return render(request, "registration/login.html", {'form_login': LoginForm(), 'form_register': RegisterForm(), 'form_recover': form})			
 
 def cadastro(request):
 	invalid = False

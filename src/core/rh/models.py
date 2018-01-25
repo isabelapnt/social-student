@@ -69,7 +69,7 @@ class Usuario(User):
     def __unicode__(self):
         return u"{username}".format(username=self.username)
 
-    def ful_name(self):
+    def full_name(self):
         if not self.first_name:
             return self.username
         return u"{} {}".format(self.first_name, self.last_name)

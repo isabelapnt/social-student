@@ -13,6 +13,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import login as login_auth, logout as logout_auth
 from core.rh.models import Aluno
+from core.rh.forms import RecoverForm
 from core.servico.models import Servico
 from dashboard.forms import RegisterForm, LoginForm
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
@@ -89,23 +90,19 @@ def password(request):
     return render(request, 'login/password.html', {'form': form})
 
 def social_login(request):
-    print "-----------------oioio"
     if request.user.is_authenticated():
         return HttpResponse(template.render([], request))
     if request.method == 'POST':
             form = LoginForm(request.POST)
             try:
                 user = Aluno.objects.get(email=request.POST.get('email'))
-                print "USER"
-                print user
-                print request.POST
                 request.session['email'] = user.email
                 request.session['first_name'] = user.first_name
                 request.session['last_name'] = user.last_name
                 request.session['accessed'] = True
 
                 auth_user = authenticate(username=user.username, password=request.POST.get('password'))
-                print auth_user
+
                 if user and auth_user is not None:
                     return HttpResponseRedirect("/")
                 else:
@@ -116,7 +113,7 @@ def social_login(request):
     else:
         form = LoginForm()
 
-    return render(request, "registration/login.html", {'form_login': form, 'form_register': RegisterForm()})
+    return render(request, "registration/login.html", {'form_login': form, 'form_register': RegisterForm(), 'form_recover':RecoverForm()})
     
 def social_logout(request):
     logout_auth(request)
