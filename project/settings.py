@@ -11,12 +11,12 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 SECRET_KEY = config('SECRET_KEY')
 
-# DEBUG = config('DEBUG', default=True, cast=bool)
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
+# DEBUG = True
 
 
 COMPRESS_ENABLED = True
