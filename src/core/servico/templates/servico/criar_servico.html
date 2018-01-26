@@ -1,0 +1,86 @@
+{% extends "dashboard/includes/header.html" %}
+
+{% load widget_tweaks %}
+{% load compress static %}
+{% block conteudo %}
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor">Novo Serviços</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Novo Serviço</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-11 col-xlg-12 col-md-10">
+        <div class="card">
+            <div class="card-block">
+               <form class="form-horizontal form-material" action="{% url 'save_servico' %}" enctype="multipart/form-data"  method="post" id="cadastro_form">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label class="col-md-12">Nome</label>
+                        <div class="col-md-12">
+                            {{form.nome | add_class:"form-control form-control-line" }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12">Resumo</label>
+                        <div class="col-md-12">
+                            {{form.resumo | add_class:"form-control form-control-line" }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-12">Tags:</label><br><br>
+                      <div class="col-md-12">
+                        <div class="demo-checkbox">
+                            {% for tag in tags %}
+                            <input type="checkbox" id="md_checkbox_{{tag.id}}" class="chk-col-light-blue"  name="tag" value="{{tag.id}}">
+                            <label for="md_checkbox_{{tag.id}}">{{tag.nome}}</label>
+                            {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-md-12">Carrossel de Imagens:</label><br><br>
+                      <div class="col-md-12">
+                        <div class="demo-radio-button">
+                          <input name="carrosel" type="radio" id="carrosel_1" checked="" value="true">
+                          <label for="carrosel_1">Sim</label>
+                          <input name="carrosel" type="radio" id="carrosel_2" value="false">
+                          <label for="carrosel_2">Não</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-md-12">Anexo de Arquivos:</label><br><br>
+                      <div class="col-md-12">
+                        <div class="demo-radio-button">
+                          <input name="anexo" type="radio" id="anexo_1" checked="" value="true" >
+                          <label for="anexo_1">Sim</label>
+                          <input name="anexo" type="radio" id="anexo_2" value="false">
+                          <label for="anexo_2">Não</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12" id="editar">
+                            <button class="btn btn-success" type="submit" v-on:click="alert " >Salvar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}             
+{% block extra_js %}
+<script type="text/javascript">
+
+</script>
+{% endblock %}

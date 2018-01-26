@@ -1,0 +1,43 @@
+{% extends "dashboard/includes/header.html" %}
+{% load compress static %}
+{% block conteudo %}
+    <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+            <h3 class="text-themecolor">Todos Serviços</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Todos Serviços</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        {% for servico in servicos %}
+            <div class="col-lg-4 col-xlg-3 col-md-5">
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'assets/images/background/profile-bg.jpg' %}" alt="Card image cap">
+                        <div class="card-block little-profile text-center">
+                            <div class="message-box contact-box">
+                                <h2 class="add-ct-btn">
+                                    <a href="{% url 'participar' servico.id %}" data-original-title="Participar" data-toggle="tooltip">
+                                        <button type="button" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button>
+                                    </a>
+                                </h2>
+                                <h3 class="m-b-0">{{servico.nome}}</h3>
+                                <p>Criado por : {{servico.criado_por}}</p>
+                                <div class="row text-center m-t-20">
+                                    <div class="col-lg-4 col-md-4 m-t-20">
+                                        <h3 class="m-b-0 font-light">{{servico.get_qauntidade_post}}</h3><small>Post</small></div>
+                                    <div class="col-lg-4 col-md-4 m-t-20">
+                                        <h3 class="m-b-0 font-light"></h3><small></small></div>
+                                    <div class="col-lg-4 col-md-4 m-t-20">
+                                        <h3 class="m-b-0 font-light">{{servico.servico_usuario.count}}</h3><small>Participantes</small></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               
+                <!-- <a href="{% url 'servico_slug' servico.slug %}"> </a> -->
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}             

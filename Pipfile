@@ -1,0 +1,45 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[dev-packages]
+
+
+
+[packages]
+
+"asn1crypto" = "==0.23.0"
+bcrypt = "==3.1.4"
+certifi = "==2017.11.5"
+cffi = "==1.11.2"
+chardet = "==3.0.4"
+cryptography = "==2.1.2"
+Django = "==1.11.6"
+django-appconf = "==1.0.2"
+django_compressor = "==2.2"
+django-media-fixtures = "==0.0.3"
+django-tinymce = "==2.6.0"
+"enum34" = "==1.1.6"
+Fabric = "==1.14.0"
+idna = "==2.6"
+ipaddress = "==1.0.18"
+oauthlib = "==2.0.6"
+olefile = "==0.44"
+paramiko = "==2.3.1"
+Pillow = "==4.3.0"
+"pyasn1" = "==0.3.7"
+pycparser = "==2.18"
+PyJWT = "==1.5.3"
+PyNaCl = "==1.1.2"
+python-openid = "==2.2.5"
+pytz = "==2017.2"
+rcssmin = "==1.0.6"
+requests = "==2.18.4"
+requests-oauthlib = "==0.8.0"
+rjsmin = "==1.0.12"
+social-auth-app-django = "==2.0.0"
+social-auth-core = "==1.5.0"
+"urllib3" = "==1.22"

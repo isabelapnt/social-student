@@ -1,0 +1,74 @@
+{% load widget_tweaks %}
+{% load compress static %}
+
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/favicon.png' %}">
+    <title>Social Student</title>
+    <!-- Bootstrap Core CSS -->
+    <link href=" {% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'css/style_login.css' %}" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="{% static 'css/colors/blue.css' %}" id="theme" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <section id="wrapper">
+      <div class="login-register" style="background-image:url({% static 'assets/images/background/login-register.jpg' %});">        
+            {% block conteudo %}
+            {% endblock %}
+        </div>
+        
+    </section>
+    <script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'assets/plugins/bootstrap/js/tether.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+
+    <script src="{% static 'js/login.js' %}"></script>
+    <script src="{% static 'js/jquery.slimscroll.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'js/waves.js' %}"></script>
+    <!--Menu sidebar -->
+    <script src="{% static 'js/sidebarmenu.js' %}"></script>
+    <!--stickey kit -->
+    <script src="{% static 'assets/plugins/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
+    <!--Custom JavaScript -->
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!-- chartist chart -->
+    <script src="{% static 'assets/plugins/chartist-js/dist/chartist.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js' %}"></script>
+    <!--c3 JavaScript -->
+    <script src="{% static 'assets/plugins/d3/d3.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/c3-master/c3.min.js' %}"></script>
+    <!-- Chart JS -->
+    <script src="{% static 'js/dashboard1.js' %}"></script>
+
+</body>
+
+</html>
