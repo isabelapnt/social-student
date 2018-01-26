@@ -14,6 +14,7 @@ $("#login-box-link").click(function(){
   $("#login-box-link").addClass("active");
   $("#signup-box-link").removeClass("active");
 });
+
 $("#request-box-link").click(function(){
   $(".email-login").fadeOut(100);
   $(".email-signup").fadeOut(100);
