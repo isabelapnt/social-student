@@ -22,22 +22,22 @@ class PerfilForm(forms.ModelForm):
         # exclude = [
         #     "is_staff",
         # ]
-        # dict_unidade = {}
-        # unidades = Unidade.objects.all()
-        # for unidade in unidades:
-        #   dict_unidade[unidade.id] = unidade.nome
-        # CHOICES = tuple(dict_unidade.items())
+        dict_unidade = {}
+        unidades = Unidade.objects.all()
+        for unidade in unidades:
+          dict_unidade[unidade.id] = unidade.nome
+        CHOICES = tuple(dict_unidade.items())
 
-        # unidade = forms.ChoiceField(choices=CHOICES, required=True,)
+        unidade = forms.ChoiceField(choices=CHOICES, required=True,)
 
-        # dict_curso = {}
-        # cursos = Curso.objects.all()
-        # for curso in cursos:
-        #   dict_curso[curso.id] = curso.nome
-        # CHOICES = tuple(dict_curso.items())
+        dict_curso = {}
+        cursos = Curso.objects.all()
+        for curso in cursos:
+          dict_curso[curso.id] = curso.nome
+        CHOICES = tuple(dict_curso.items())
 
-        # curso = forms.ChoiceField(choices=CHOICES,
-        #                         required=True,)
+        curso = forms.ChoiceField(choices=CHOICES,
+                                required=True,)
         email = forms.EmailField(required=True)
 
     def clean(self):
