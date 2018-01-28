@@ -15,8 +15,8 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = config('DEBUG', default=True, cast=bool)
-# DEBUG = True
+# DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = True
 
 
 COMPRESS_ENABLED = True
@@ -92,6 +92,7 @@ TEMPLATES = [
 
 
 AUTHENTICATION_BACKENDS = (
+    # 'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
     'social_core.backends.google.GoogleOpenId',  # for Google authentication
     'social_core.backends.google.GoogleOAuth2',  # for Google authentication
@@ -120,6 +121,9 @@ DATABASES = {
 }
 
 
+# Internationalization
+# https://docs.djangoproject.com/en/1.8/topics/i18n/
+
 LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Sao_Paulo'
@@ -129,6 +133,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 
 
@@ -151,16 +159,18 @@ SOCIAL_AUTH_PIPELINE = (
 
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'last_name', 'email']
 
+SOCIAL_AUTH_TWITTER_KEY = 'gi8pAoPKh9Qw46pzAeG8b5JWv'
+SOCIAL_AUTH_TWITTER_SECRET = 'Dhdy944oZ26XcWT0JDlEOwcvcy0rFUXMdgPaBnbADS048hiK16'
 
-SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY', default=config('SOCIAL_AUTH_FACEBOOK_KEY'))
-SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET', default=config('SOCIAL_AUTH_FACEBOOK_SECRET'))
+SOCIAL_AUTH_FACEBOOK_KEY = '541656296181952'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'cca5eb11728456aa5fc92f150e8d6d0f'  # App Secret
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id,name,email', 
 }
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY', default=config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY'))
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET', default=config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET'))
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1095358520833-cmssjplolkklq006l5baivg5b183id26.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'NZrPLLL8wVp6caLiUB7-l_tq'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
@@ -174,6 +184,12 @@ SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
 'https://www.googleapis.com/auth/userinfo.email',
 'https://www.googleapis.com/auth/userinfo.profile'
 ]
+
+# SOCIAL_AUTH_LOGIN_ERROR_URL = '/settings/'
+# SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/settings/'
+# SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+
+# SOCIAL_AUTH_USER_MODEL = 'rh.Aluno'
 
 TINYMCE_DEFAULT_CONFIG = {
    'theme': 'advanced',
@@ -189,8 +205,8 @@ TINYMCE_DEFAULT_CONFIG = {
    'theme_advanced_resizing': "true",
 }
 
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=config('EMAIL_USE_TLS'))
-EMAIL_HOST = config('EMAIL_HOST', default=config('EMAIL_HOST'))
-EMAIL_PORT = config('EMAIL_PORT', default=config('EMAIL_PORT'))
-EMAIL_HOST_USER = config('EMAIL_HOST_USER', default=config('EMAIL_HOST_USER'))
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default=config('EMAIL_HOST_PASSWORD'))
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'socialstudentt@gmail.com'
+EMAIL_HOST_PASSWORD = 'SocialStudent**'
