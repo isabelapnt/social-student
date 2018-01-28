@@ -1,3 +1,3 @@
-release: src/./release.sh
+release: ./release.sh
 
 web: gunicorn project.wsgi --log-file -
