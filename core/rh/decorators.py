@@ -16,7 +16,7 @@ def login_required_custom(function):
                 'cursos': Curso.objects.all(),
                 'unidades': Unidade.objects.all(),
                 'form_login': LoginForm,
-                'form_register': RegisterForm(),
+                'form_register': RegisterForm,
                 'form_recover': RecoverForm
             }
             return HttpResponse(template.render(context, request))

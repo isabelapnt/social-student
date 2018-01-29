@@ -44,6 +44,7 @@
                  {% csrf_token %}
                   <div class="form-group">
                     <div class="col-md-12">
+                      <label for="example-email">Nome Completo:</label>
                         {{form_register.full_name | add_class:"form-control form-control-line"}}
                         {% if form_register.full_name.errors %}
                           <div class="help-block" style="color:red;text-align: left;">
@@ -57,6 +58,7 @@
 
                   <div class="form-group">
                     <div class="col-md-12">
+                       <label for="example-email">E-mail:</label>
                         {{form_register.email | add_class:"form-control form-control-line"}}
                         {% if form_register.email.errors %}
                           <div class="help-block" style="color:red;text-align: left;">
@@ -70,6 +72,7 @@
 
                     <div class="form-group">
                       <div class="col-sm-12">
+                         <label for="example-email">Selecione sua Unidade:</label>
                         {{form_register.unidade | add_class:"form-control form-control-line" }}
                         {% if form_register.email.errors %}
                           <div class="help-block" style="color:red;text-align: left;">
@@ -83,6 +86,7 @@
 
                     <div class="form-group">
                       <div class="col-sm-12">
+                         <label for="example-email">Selecione seu Curso:</label>
                         {{form_register.curso | add_class:"form-control form-control-line" }}
                         {% if form_register.curso.errors %}
                           <div class="help-block" style="color:red;text-align: left;">
@@ -96,6 +100,7 @@
 
                   <div class="form-group">
                     <div class="col-md-12">
+                       <label for="example-email">Senha:</label>
                         {{form_register.password | add_class:"form-control form-control-line"}}
                         {% if form_register.password.errors %}
                           <div class="help-block" style="color:red;text-align: left;">
@@ -109,6 +114,7 @@
 
                   <div class="form-group">
                     <div class="col-md-12">
+                       <label for="example-email">Confirmar senha:</label>
                         {{form_register.repassword | add_class:"form-control form-control-line"}}
                         {% if form_register.repassword.errors %}
                           <div class="help-block" style="color:red;text-align: left;">

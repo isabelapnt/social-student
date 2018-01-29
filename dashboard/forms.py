@@ -1,21 +1,19 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
-from core.rh.models import Unidade, Curso, Usuario
+from core.rh.models import Aluno, Unidade, Curso, Usuario
 
 class RegisterForm(forms.Form):
+    model = Aluno
 
-    full_name = forms.CharField(max_length=50, 
-                                required=True, 
-                                widget=forms.TextInput(attrs={'placeholder':"Nome Completo"}))
-    email = forms.EmailField(required=True,
-                             max_length=50,
-                             widget=forms.EmailInput(attrs={'class': 'form-control',
-                                                                'placeholder':"E-mail"}))
-    password = forms.CharField(max_length=8, 
-                                required=True,
-                                widget=forms.PasswordInput(attrs={'class': 'form-control',
-                                                                'placeholder':"Senha"}))
+    fields = [
+            'email',
+            'first_name',
+            'last_name',
+            'unidade',
+            'curso',
+            'idade',
+            ]
     dict_unidade = {}
     unidades = Unidade.objects.all()
     for unidade in unidades:
@@ -30,18 +28,23 @@ class RegisterForm(forms.Form):
       dict_curso[curso.id] = curso.nome
     CHOICES = tuple(dict_curso.items())
 
+
+    full_name = forms.CharField(max_length=50, 
+                                required=True)
+    email = forms.EmailField(required=True,
+                             max_length=50,
+                             widget=forms.EmailInput(attrs={'class': 'form-control',}))
+    password = forms.CharField(max_length=8, 
+                                required=True,
+                                widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    
     curso = forms.ChoiceField(choices=CHOICES,
                                 required=True,)
 
     repassword = forms.CharField(max_length=8, 
                                 required=True,
-                                widget=forms.PasswordInput(attrs={'class': 'form-control',
-                                                                'placeholder':"Redigite sua senha"}))
+                                widget=forms.PasswordInput(attrs={'class': 'form-control',}))
 
-    def __init__(self, *args, **kwargs):
-        super(RegisterForm, self).__init__(*args, **kwargs)
-        
-                                                        
     def clean(self):
         cleaned_data = super(RegisterForm, self).clean()
         password = cleaned_data.get("password")
