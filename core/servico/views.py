@@ -50,12 +50,14 @@ def novo_post(request, id_servico):
 
 @login_required_custom
 def criar_servico(request):
+	user = Aluno.objects.get(email=request.session["email"])
 	form = ServicoForm()
 	tags = Tags.objects.all()
 	template = loader.get_template('servico/criar_servico.html')
 	context = {
 		'form' :  form,
-		'tags' :  tags
+		'tags' :  tags,
+		'user':   user
 	}
 
 	return HttpResponse(template.render(context, request))
