@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from core.tag.models import Tags
+from core.rh.models import Usuario, Unidade
 # Create your models here.
 
 class Servico(models.Model):
@@ -11,7 +12,7 @@ class Servico(models.Model):
         verbose_name_plural = u'Serviços'
         app_label = "servico"
 
-    nome = models.CharField(max_length=200, verbose_name=u"Nome do Serviço", unique=True)
+    nome = models.CharField(max_length=200, verbose_name=u"Nome do Serviço")
     criado_por = models.CharField(max_length=200, verbose_name=u"Criado por")
     resumo = models.TextField()  
     slug = models.SlugField(max_length=200, blank=True, unique=True)
@@ -24,7 +25,8 @@ class Servico(models.Model):
     tag = models.ManyToManyField(Tags, blank=True, related_name="servico_tags")
     has_carrosel = models.BooleanField(default=False)
     has_anexo = models.BooleanField(default=False)
-    
+    unidade = models.ForeignKey(Unidade, null=True, blank=True, related_name="servico_unidade")   
+    usuario = models.ManyToManyField(Usuario, blank=True, related_name="servico_usuario")
     def __unicode__(self):
         return u"{nome}".format(nome =self.nome)
 

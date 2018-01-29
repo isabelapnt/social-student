@@ -19,6 +19,7 @@ class Command(BaseCommand):
         estado = "Bahia",
         pais = "Brasil")
 
+
     unidade_2 = Unidade.objects.create(
         nome="UNEB",
         telefone="87878787878",

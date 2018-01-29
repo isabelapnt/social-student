@@ -68,15 +68,19 @@ def save_servico(request):
 		anexo = True if request.POST.get('anexo') == "true" else False
 		nome = request.POST.get('nome')
 		resumo = request.POST.get('resumo')
-		user = Aluno.objects.get(email=request.session["email"]).ful_name()
+		user = Aluno.objects.get(email=request.session["email"])
 
 		servico = Servico.objects.create(
 			nome = nome,
-			criado_por = user,
+			criado_por = user.full_name(),
 			resumo = resumo,
 			has_carrosel = carrosel,
 			has_anexo = anexo,
+			unidade = user.unidade
 			)
+		servico.usuario.add(user)
+		servico.save()
+
 		for id_tag in tags:
 			tag = Tags.objects.get(id = int(id_tag))
 			servico.tag.add(tag)

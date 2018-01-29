@@ -13,11 +13,11 @@ class Command(BaseCommand):
     def handle(self, **options):
         self.stdout.write('Inicio de carregamento de dados dos Post')
 
-    Aluguel = Servico.objects.get(nome="Alguel coletivo")
-    Eventos = Servico.objects.get(nome="Eventos")
-    Banco_prova = Servico.objects.get(nome="Banco de Provas")
-    Achados_Perdidos = Servico.objects.get(nome="Achados e Perdidos")
-    Vagas = Servico.objects.get(nome=u"Estágios/Empregos")
+    Aluguel = Servico.objects.filter(nome="Alguel coletivo")[0]
+    Eventos = Servico.objects.filter(nome="Eventos")[0]
+    Banco_prova = Servico.objects.filter(nome="Banco de Provas")[0]
+    Achados_Perdidos = Servico.objects.filter(nome="Achados e Perdidos")[0]
+    Vagas = Servico.objects.filter(nome=u"Estágios/Empregos")[0]
     
     usuario = Usuario.objects.all()[11]
 

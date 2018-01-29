@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-from core.servico.models import Servico
 # Create your models here.
 
 class Endereco(models.Model):
@@ -26,7 +25,6 @@ class Unidade(Endereco):
 
     nome = models.CharField(max_length=200)
     telefone = models.CharField(max_length=25, blank=True)
-    servico = models.ForeignKey(Servico, null=True, blank=True)
     imagem = models.ImageField(
         null=True,
         blank=True,
@@ -51,7 +49,6 @@ class Usuario(User):
 
     celular = models.CharField(max_length=20)
     unidade = models.ForeignKey(Unidade)
-    servico = models.ManyToManyField(Servico, blank=True, related_name="servico_usuario")
     imagem = models.ImageField(
         null=True,
         blank=True,

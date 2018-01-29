@@ -38,12 +38,12 @@ class Command(BaseCommand):
 			last_name = str(curso.id)
 		)
 	
-	alunos = Aluno.objects.all()
-	servicos = Servico.objects.all()
+	# alunos = Aluno.objects.all()
+	# servicos = Servico.objects.all()
 
-	for servico in servicos:
-		index_random = random.sample(range(5,13), 6)
-		for i in index_random:
-			aluno = Aluno.objects.get(id=i)
-			aluno.servico.add(servico)
-			aluno.save()
+	# for aluno in alunos:
+	# 	index_random = random.sample(range(5,13), 6)
+	# 	for i in index_random:
+	# 		aluno = Servico.objects.get(id=i)
+	# 		aluno.servico.add(servico)
+	# 		aluno.save()
