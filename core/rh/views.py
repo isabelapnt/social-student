@@ -33,7 +33,7 @@ def perfil(request):
 			'servicos': servicos,
 		}
 	except Exception as e:
-		form = PerfilForm()
+		form = PerfilForm
 		template = loader.get_template('usuario/profile.html')
 		context = {
 		    'form': form,

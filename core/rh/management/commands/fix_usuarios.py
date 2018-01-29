@@ -27,8 +27,8 @@ class Command(BaseCommand):
 
 	for curso in cursos:
 		Aluno.objects.create(
-			username="Aluno_" + str(curso.id),
-			email="Aluno_" + str(curso.id) + "@email.com",
+			username="aluno_" + str(curso.id),
+			email="aluno_" + str(curso.id) + "@email.com",
 			password="123",
 			celular="(71)99999999",
 			curso = curso,
