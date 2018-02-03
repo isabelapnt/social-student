@@ -27,8 +27,6 @@ def perfil(request):
 	request.session['last_name'] = request.user.last_name
 	try:
 		aluno = Aluno.objects.get(email = request.user.email)
-		print "aluno"
-		print aluno
 		servicos = Servico.objects.filter(usuario = aluno)
 		template = loader.get_template('dashboard/index.html')
 		context = {
@@ -49,7 +47,6 @@ def save_perfil(request):
 	if request.method == 'POST':
 		form = PerfilForm(request.POST)
 
-		print request._files
 		if form.is_valid():
 			try:
 				unidade = Unidade.objects.get(id = request.POST.get('unidade'))
