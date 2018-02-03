@@ -14,7 +14,12 @@
         {% for servico in servicos %}
             <div class="col-lg-4 col-xlg-3 col-md-5">
                     <div class="card">
-                        <img class="card-img-top" src="{% static 'assets/images/background/profile-bg.jpg' %}" alt="Card image cap">
+                        {% if servico.imagem %}
+                            <div style="overflow:hidden;background:#fff url('{{servico.imagem.url}}') center no-repeat ; width:100%; height:164px">
+                            </div>
+                        {% else %}
+                         <img class="card-img-top" src="{% static 'assets/images/background/profile-bg.jpg' %}" alt="Card image cap">
+                        {%endif%}
                         <div class="card-block little-profile text-center">
                             <div class="message-box contact-box">
                                 <h2 class="add-ct-btn">

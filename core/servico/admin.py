@@ -5,6 +5,6 @@ from django.contrib import admin
 from core.servico.models import *
 # Register your models here.
 class ServicoAdmin(admin.ModelAdmin):
-    fields = ('ativo', 'nome', 'criado_por', 'resumo',  'slug', 'imagem', 'tag')
+    fields = ('ativo', 'nome', 'criado_por', 'resumo',  'slug', 'imagem', 'tag', 'unidade')
 
 admin.site.register(Servico, ServicoAdmin)

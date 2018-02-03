@@ -13,6 +13,9 @@ STATICFILES_DIRS = (
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
+
 SECRET_KEY = config('SECRET_KEY')
 
 # DEBUG = config('DEBUG', default=True, cast=bool)

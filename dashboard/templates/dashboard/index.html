@@ -18,7 +18,12 @@
                     <!-- Column -->
                     <a href="{% url 'servico_slug' servico.slug %}">
                         <div class="card">
-                            <img class="card-img-top" src="{% static 'assets/images/background/profile-bg.jpg' %}" alt="Card image cap">
+                           {% if servico.imagem %}
+                                <div style="overflow:hidden;background:#fff url('{{servico.imagem.url}}') center no-repeat ; width:100%; height:164px">
+                                </div>
+                            {% else %}
+                                <img class="card-img-top" src="{% static 'assets/images/background/profile-bg.jpg' %}" alt="Card image cap">
+                            {%endif%}
                             <div class="card-block little-profile text-center">
                                 <!-- <div class="pro-img"><img src="{% static 'assets/images/users/4.jpg' %}" alt="user" /></div> -->
                                 <h3 class="m-b-0">{{servico.nome}}</h3>
