@@ -35,7 +35,8 @@ class Command(BaseCommand):
 			idade=22,
 			unidade = curso.unidade,
 			first_name = "Aluno",
-			last_name = str(curso.id)
+			last_name = str(curso.id),
+			imagem = "uploads/usuario/img/perfil.jpg"
 		)
 	
 	# alunos = Aluno.objects.all()

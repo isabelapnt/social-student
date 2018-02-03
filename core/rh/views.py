@@ -53,6 +53,10 @@ def save_perfil(request):
 				# curso = Curso.objects.get(id = request.POST.get('curso'))
 				if not Aluno.objects.filter(email=request.session["email"]):
 					Aluno.objects.create(email=request.session["email"], first_name=request.session["first_name"], last_name=request.session["last_name"], unidade=unidade)
+					aluno = Aluno.objects.get(email=request.session["email"])
+					aluno.imagem = request._files.get("imagem")
+					aluno.save()
+					request.session['imagem'] = aluno.imagem.url
 				else:
 					aluno = Aluno.objects.get(email=request.session["email"])
 					aluno.imagem = request._files.get("imagem")

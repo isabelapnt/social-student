@@ -4,6 +4,8 @@ set -o errexit
 
 python manage.py migrate --noinput
 
+python manage.py collectstatic --noinput
+
 # python manage.py flush --noinput
 # python manage.py fix_super_user 
 # python manage.py fix_unidade_curso 

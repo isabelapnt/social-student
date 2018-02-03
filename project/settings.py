@@ -45,8 +45,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'compressor',
-    'social_django',
-
+    'social_django',    
+    'django_media_fixtures',
+    
     'core.rh',
     'core.servico',
     'core.tag',

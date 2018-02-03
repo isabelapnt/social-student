@@ -38,7 +38,7 @@
                                 <div class="sl-right"> 
                                     <p>
                                         <h3><img class="img-circle pull-left m-r-20 m-b-10" width="60" alt="user" src="{% static 'assets/images/users/2.jpg' %}">
-                                            <b style="font-weight: 600;">{{post.criado_por.ful_name}}</b><br><small>{{post.data_cadastro|date:'H:i - d/m/Y '}}</small></h3>
+                                            <b style="font-weight: 600;">{{post.criado_por.full_name}}</b><br><small>{{post.data_cadastro|date:'H:i - d/m/Y '}}</small></h3>
                                         <hr class="">
                                     </p>
                                 </div>
@@ -50,9 +50,15 @@
                                         <div class="message-widget">
                                             {% for comentario in post.comentario_post.all %}
                                                 <a >
-                                                    <div class="user-img"> <img src="{% static 'assets/images/users/2.jpg' %}" alt="user" class="img-circle"> </div>
+                                                    <div class="user-img">
+                                                      {% if comentario.usuario.imagem %}
+                                                        <img src="{{comentario.usuario.imagem.url}}" alt="user" class="img-circle">
+                                                      {% else %}
+                                                        <img src="{% static 'assets/images/users/default-profile.jpg' %}" alt="user" class="img-circle">
+                                                      {% endif %}
+                                                    </div>
                                                     <div class="mail-contnet">
-                                                        <h5>{{comentario.usuario.ful_name}}</h5> 
+                                                        <h5>{{comentario.usuario.full_name}}</h5> 
                                                         <span class="mail-desc">
                                                             {{comentario.descricao}}
                                                         </span>
