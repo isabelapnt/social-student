@@ -37,7 +37,7 @@ class Unidade(Endereco):
     # )
 
     def __unicode__(self):
-        return u'%s'%(self.nome)
+            return u'%s'%(self.nome)
 
 
 class Usuario(User):
@@ -72,31 +72,31 @@ class Usuario(User):
         return u"{} {}".format(self.first_name, self.last_name)
 
 class Curso(models.Model):
-	class Meta:
-		unique_together = ('nome', 'unidade')
-		verbose_name = u'Curso'
-		verbose_name_plural = u'Cursos'
-		app_label = "rh"
+    class Meta:
+        unique_together = ('nome', 'unidade')
+        verbose_name = u'Curso'
+        verbose_name_plural = u'Cursos'
+        app_label = "rh"
 
-	nome = models.TextField(max_length=50)
-	unidade = models.ForeignKey(Unidade)
+    nome = models.TextField(max_length=50)
+    unidade = models.ForeignKey(Unidade)
 
-	def __unicode__(self):
-		return u"{nome}".format(nome=self.nome)
+    def __str__(self):
+        return u'%s' % (self.nome)
 
 class Admin(Usuario):
-	class Meta:
-		verbose_name = u'Admin'
-		verbose_name_plural = u'Admin'
-		app_label = "rh"
+    class Meta:
+        verbose_name = u'Admin'
+        verbose_name_plural = u'Admin'
+        app_label = "rh"
 
 class Aluno(Usuario):
-	class Meta:
-		verbose_name = u'Aluno'
-		verbose_name_plural = u'Aluno'
-		app_label = "rh"
+    class Meta:
+        verbose_name = u'Aluno'
+        verbose_name_plural = u'Aluno'
+        app_label = "rh"
 
-	# matricula = models.TextField(max_length=20)
-	idade = models.IntegerField(default=18)
-	curso = models.ForeignKey(Curso)
+    # matricula = models.TextField(max_length=20)
+    idade = models.IntegerField(default=18)
+    curso = models.ForeignKey(Curso)
 
