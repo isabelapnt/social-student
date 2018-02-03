@@ -2,8 +2,7 @@
 from __future__ import unicode_literals
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
 from django.template import loader
 from core.rh.models import Unidade, Curso, Aluno, Usuario
 from core.rh.forms import PerfilForm
@@ -80,7 +79,9 @@ def recover(request):
 				body = recover_msg.format(full_name=aluno.full_name(), new_password=new_password)
 				email = EmailMessage('Nova Senha', body, to=[aluno.email])
 				email.send()
-				return HttpResponseRedirect("/")
+				# return HttpResponseRedirect("/")
+				response_redirect = request.GET.get("next", HttpResponseRedirect("/"))
+				return HttpResponse("<script type='text/javascript'>alert('Envinhamos a nova senha para o seu email :D');window.location.href='{}'</script>".format(response_redirect))
 			except ValidationError as validationError:
 				for field, errors in validationError.message_dict.iteritems():
 					form.add_error(field, errors[0])
@@ -106,7 +107,9 @@ def cadastro(request):
 					curso = curso,
 					password = senha)
 				
-				return HttpResponseRedirect("/")
+				# return HttpResponseRedirect("/")
+				response_redirect = request.GET.get("next", HttpResponseRedirect("/"))
+				return HttpResponse("<script type='text/javascript'>alert('Cadastro realizado com sucesso!');window.location.href='{}'</script>".format(response_redirect))
 
 			except ValidationError as validationError:
 				for field, errors in validationError.message_dict.iteritems():

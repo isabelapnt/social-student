@@ -40,7 +40,7 @@
                   </div>
                 </form>
 
-                <form class="email-signup form-horizontal form-material" action="{% url 'cadastro' %}" enctype="multipart/form-data"  method="post" id="cadastro_form">
+                <form class="email-signup form-horizontal form-material" action="{% url 'cadastro' %}?next={{request.path}}" enctype="multipart/form-data"  method="post" id="cadastro_form">
                  {% csrf_token %}
                   <div class="form-group">
                     <div class="col-md-12">
@@ -142,7 +142,7 @@
                     </div>
                 </div>
                 
-                <form class="email-request form-horizontal form-material" action="{% url 'recover' %}" id="request-box-link"  enctype="multipart/form-data"  method="post">
+                <form class="email-request form-horizontal form-material" action="{% url 'recover' %}?next={{request.path}}" id="request-box-link"  enctype="multipart/form-data"  method="post">
                   {% csrf_token %}
                     <div class="form-group ">
                         <div class="col-xs-12">
@@ -150,7 +150,7 @@
                             <p class="text-muted">Informe seu E-mail e enviaremos uma nova senha pra você :) </p>
                         </div>
                     </div>
-                    <div class="form-group ">
+                      <div class="form-group ">
                         <div class="col-xs-12">
                             {{form_recover.email | add_class:"form-control form-control-line"}}
                         </div>
@@ -167,6 +167,35 @@
                         </div>
                     </div>
                 </form>
+                <div id="test"> 
+                 <form action="">
+                    <input type="email" id="email" name="email" v-model="email">
+                    <div><button type="submit" type="submit" v-bind:disabled="send">Submit</button></div>
+                </form>
+                </div>
             </div>
 </div>
+{% endblock %}
+{% block extra_js %}
+  <script type="text/javascript">
+    new Vue({
+        el: '#test',
+        data: {
+          email: ''
+        },
+        computed: {
+          send: function () {
+            this.ajaxRequest = true;
+            this.$http.post('{% url "recover" %}', {
+                  domain: this.domain
+                }, function (data, status, request) {
+                    this.postResults = data;
+
+                    this.ajaxRequest = false;
+                });
+          }}
+          }
+        }
+    })
+  </script>
 {% endblock %}
