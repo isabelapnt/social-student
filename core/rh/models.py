@@ -98,5 +98,5 @@ class Aluno(Usuario):
 
     # matricula = models.TextField(max_length=20)
     idade = models.IntegerField(default=18)
-    curso = models.ForeignKey(Curso)
+    curso = models.ForeignKey(Curso, blank=True, null=True)
 

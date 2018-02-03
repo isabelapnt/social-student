@@ -19,7 +19,7 @@ recover_msg = "Olá {full_name}, \n\
             Obrigado por fazer parte desse projeto. \n\n\
             Social Student."
 
-@login_required
+@login_required_custom
 def perfil(request):
 	request.session['email'] = request.user.email
 	request.session['first_name'] = request.user.first_name
@@ -35,7 +35,7 @@ def perfil(request):
 		form = PerfilForm
 		template = loader.get_template('usuario/profile.html')
 		context = {
-		    'form': form,
+		    'form_perfil': PerfilForm,
 		}
 
 	return HttpResponse(template.render(context, request))
@@ -43,26 +43,32 @@ def perfil(request):
 @login_required_custom
 def save_perfil(request):
 	if request.method == 'POST':
-		form = PerfilForm(request.POST, request.FILES)
-		unidade = Unidade.objects.get(id = request.POST.get('unidade'))
-		curso = Curso.objects.get(id = request.POST.get('curso'))
-		if not Aluno.objects.filter(email=request.session["email"]):
-			Aluno.objects.create(email=request.session["email"], first_name=request.session["first_name"], last_name=request.session["last_name"], curso=curso, unidade=unidade)
-		else:
-			aluno = Aluno.objects.get(email=request.session["email"])
-			aluno.curso = curso
-			aluno.unidade = unidade
-			aluno.save()	
-		return HttpResponseRedirect("/")
+		form = PerfilForm(request.POST)
+		if form.is_valid():
+			try:
+				unidade = Unidade.objects.get(id = request.POST.get('unidade'))
+				# curso = Curso.objects.get(id = request.POST.get('curso'))
+				if not Aluno.objects.filter(email=request.session["email"]):
+					Aluno.objects.create(email=request.session["email"], first_name=request.session["first_name"], last_name=request.session["last_name"], unidade=unidade)
+				else:
+					aluno = Aluno.objects.get(email=request.session["email"])
+					# aluno.curso = curso
+					aluno.unidade = unidade
+					aluno.save()	
+				return HttpResponseRedirect("/")
+			except ValidationError as validationError:
+				for field, errors in validationError.message_dict.iteritems():
+					form.add_error(field, errors[0])
+
+	return render(request, "usuario/profile.html", {'form_perfil': PerfilForm()})
 
 @login_required_custom
 def see_perfil(request):
-	form = PerfilForm()
 	user = Aluno.objects.get(email=request.session["email"])
 	template = loader.get_template('usuario/profile.html')
 	context = {
-		'form': form,
-		'user': user
+		'user': user,
+		'form_perfil': PerfilForm,
 	}
 
 	return HttpResponse(template.render(context, request))

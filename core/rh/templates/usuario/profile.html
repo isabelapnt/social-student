@@ -62,25 +62,28 @@
                     <div class="form-group">
                         <label class="col-sm-12">Selecione a Unidade</label>
                         <div class="col-sm-12">
-                            {{form.unidade | add_class:"form-control form-control-line" }}
-                            {% if form.unidade.errors %}
-                                {{ form.unidade.errors }}
+                            {{form_perfil.unidade | add_class:"form-control form-control-line" }}
+                            {% if form_perfil.unidade.errors %}
+                                {{ form_perfil.unidade.errors }}
                             {% endif%}
                         </div>
                         <div class="help-block"></div>
                     </div>
 
-                     <div class="form-group">
-                        <label class="col-sm-12">Selecione o Curso</label>
-                        <div class="col-sm-12">
-                            {{form.curso | add_class:"form-control form-control-line"}}
-                            {% if form.curso.errors %}
-                                {{ form.curso.errors }}
-                            {% endif%}
+<!--                     <div class="form-group">
+                        <div class="col-md-12">
+                           <label for="example-email">Confirmar senha:</label>
+                            {{form_perfil.repassword | add_class:"form-control form-control-line"}}
+                            {% if form_perfil.repassword.errors %}
+                              <div class="help-block" style="color:red;text-align: left;">
+                                {% for error in form_perfil.repassword.errors %}
+                                  {{ error|escape }}
+                                {% endfor %}
+                              </div>
+                            {% endif %}
                         </div>
-                        <div class="help-block"></div>
                     </div>
-
+ -->
                     <div class="form-group">
                         <div class="col-sm-12" id="editar">
                             <button class="btn btn-success" type="submit" v-on:click="alert " >Salvar</button>

@@ -3,7 +3,7 @@ from core.rh.models import Usuario, Curso, Unidade
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import loader
 from dashboard.forms import LoginForm, RegisterForm
-from core.rh.forms import RecoverForm
+from core.rh.forms import RecoverForm, PerfilForm
 
 
 def login_required_custom(function):
@@ -17,7 +17,8 @@ def login_required_custom(function):
                 'unidades': Unidade.objects.all(),
                 'form_login': LoginForm,
                 'form_register': RegisterForm,
-                'form_recover': RecoverForm
+                'form_recover': RecoverForm,
+                'form_perfil': PerfilForm
             }
             return HttpResponse(template.render(context, request))
     wrap.__doc__ = function.__doc__

@@ -1,57 +1,66 @@
-# -*- coding: utf-8 -*-
+# coding:utf-8
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 from core.rh.models import Aluno, Unidade, Curso
 from django import forms
 from django.db import IntegrityError
-import sys  
-reload(sys)  
-sys.setdefaultencoding('utf8')
 
-class PerfilForm(forms.ModelForm):
 
-    class Meta:
-        model = Aluno
+class PerfilForm(forms.Form):
+    model = Aluno
 
-        fields = [
-                'email',
-                'first_name',
-                'last_name',
-                'unidade',
-                'curso',
-                'idade',
-                ]
-        # exclude = [
-        #     "is_staff",
-        # ]
-        dict_unidade = {}
-        unidades = Unidade.objects.all()
-        for unidade in unidades:
-          dict_unidade[unidade.id] = unidade.nome
-        CHOICES = tuple(dict_unidade.items())
+    fields = [
+            'email',
+            'first_name',
+            'last_name',
+            'unidade',
+            'curso',
+            'idade',
+            ]
+    dict_unidade = {}
+    unidades = Unidade.objects.all()
+    for unidade in unidades:
+      dict_unidade[unidade.id] = unidade.nome
+    CHOICES = tuple(dict_unidade.items())
 
-        unidade = forms.ChoiceField(choices=CHOICES, required=True,)
+    unidade = forms.ChoiceField(choices=CHOICES, required=True,)
 
-        dict_curso = {}
-        cursos = Curso.objects.all()
-        for curso in cursos:
-          dict_curso[curso.id] = curso.nome.encode('ascii', 'ignore').decode('ascii')
-        CHOICES = tuple(dict_curso.items())
+    # dict_curso = {}
+    # cursos = Curso.objects.all()
+    # for curso in cursos:
+    #   dict_curso[curso.id] = curso.nome
+    # CHOICES = tuple(dict_curso.items())
 
-        curso = forms.ChoiceField(choices=CHOICES,
-                                required=True,)
-        email = forms.EmailField(required=True)
+
+    # full_name = forms.CharField(max_length=50, 
+    #                             required=True)
+    # email = forms.EmailField(required=True,
+    #                          max_length=50,
+    #                          widget=forms.EmailInput(attrs={'class': 'form-control',}))
+    password = forms.CharField(max_length=8, 
+                                required=False,
+                                widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    
+    # curso = forms.ChoiceField(choices=CHOICES,
+    #                             required=True,)
+
+    repassword = forms.CharField(max_length=8,
+                                required=False,
+                                widget=forms.PasswordInput(attrs={'class': 'form-control',}))
+    imagem = forms.ImageField(required=False,)
 
     def clean(self):
-
         cleaned_data = super(PerfilForm, self).clean()
-        if cleaned_data.get("email") == "":
-            self.add_error("email", ValidationError('Campo e-mail é obrigatório'))
-        if cleaned_data.get("unidade") == "":
-            self.add_error("unidade", ValidationError('Campo unidade é obrigatório'))
-        if cleaned_data.get("curso") == "":
-            self.add_error("curso", ValidationError('Campo curso é obrigatório'))
-
+        password = cleaned_data.get("password")
+        repassword = cleaned_data.get("repassword")
+        
+        if len(password) != 0 and len(repassword) != 0:
+            if password != repassword:
+                error = "As senhas não conferem"
+                self.add_error('repassword', error)
+                self.add_error('password', error)
+                raise forms.ValidationError(u"As senhas não conferem")
+        
 
 class RecoverForm(forms.ModelForm):
 
