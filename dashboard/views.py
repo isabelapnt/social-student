@@ -44,8 +44,6 @@ def servicos(request):
 
 @login_required_custom
 def participar(request, id_servico):
-    print "passsou"
-    print id_servico
     servico = Servico.objects.get(id = id_servico)
     aluno = Aluno.objects.get(email = request.session["email"])
     servico.usuario.add(aluno)
