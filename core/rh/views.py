@@ -58,9 +58,11 @@ def save_perfil(request):
 @login_required_custom
 def see_perfil(request):
 	form = PerfilForm()
+	user = Aluno.objects.get(email=request.session["email"])
 	template = loader.get_template('usuario/profile.html')
 	context = {
 		'form': form,
+		'user': user
 	}
 
 	return HttpResponse(template.render(context, request))

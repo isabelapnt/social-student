@@ -27,6 +27,7 @@ def home(request):
     template = loader.get_template('dashboard/index.html')
     context = {
         'servicos': servicos,
+        'user': aluno
     }
     return HttpResponse(template.render(context, request))
 
@@ -37,6 +38,7 @@ def servicos(request):
     template = loader.get_template('dashboard/todos_servicos.html')
     context = {
         'servicos': servicos,
+        'user': aluno
     }
     return HttpResponse(template.render(context, request))
 
@@ -53,7 +55,6 @@ def settings(request):
     user = request.user
     # try:
     twitter_login = user.social_auth.get(provider='twitter')
-    print ("oioioioi", twitter_login)
     # except UserSocialAuth.DoesNotExist:
     #     twitter_login = None
 
