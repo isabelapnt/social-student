@@ -37,7 +37,7 @@ class Unidade(Endereco):
     # )
 
     def __unicode__(self):
-        return u"{nome}".format(nome =self.nome)
+        return u'%s'%(self.nome)
 
 
 class Usuario(User):
