@@ -12,6 +12,7 @@ from core.rh.forms import RecoverForm
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.core.mail import EmailMessage
 import random, string
+from core.servico.models import Servico
 
 recover_msg = "Olá {full_name}, \n\
             Nós recebemos seu pedido de redefinição de senha.\n\
@@ -19,18 +20,21 @@ recover_msg = "Olá {full_name}, \n\
             Obrigado por fazer parte desse projeto. \n\n\
             Social Student."
 
-@login_required_custom
+@login_required
 def perfil(request):
 	request.session['email'] = request.user.email
 	request.session['first_name'] = request.user.first_name
 	request.session['last_name'] = request.user.last_name
 	try:
 		aluno = Aluno.objects.get(email = request.user.email)
-		servicos = aluno.servico.all()
+		print "aluno"
+		print aluno
+		servicos = Servico.objects.filter(usuario = aluno)
 		template = loader.get_template('dashboard/index.html')
 		context = {
 			'servicos': servicos,
 		}
+
 	except Exception as e:
 		form = PerfilForm
 		template = loader.get_template('usuario/profile.html')
@@ -44,6 +48,8 @@ def perfil(request):
 def save_perfil(request):
 	if request.method == 'POST':
 		form = PerfilForm(request.POST)
+
+		print request._files
 		if form.is_valid():
 			try:
 				unidade = Unidade.objects.get(id = request.POST.get('unidade'))
@@ -52,9 +58,10 @@ def save_perfil(request):
 					Aluno.objects.create(email=request.session["email"], first_name=request.session["first_name"], last_name=request.session["last_name"], unidade=unidade)
 				else:
 					aluno = Aluno.objects.get(email=request.session["email"])
-					# aluno.curso = curso
+					aluno.imagem = request._files.get("imagem")
 					aluno.unidade = unidade
-					aluno.save()	
+					aluno.save()
+					request.session['imagem'] = aluno.imagem.url	
 				return HttpResponseRedirect("/")
 			except ValidationError as validationError:
 				for field, errors in validationError.message_dict.iteritems():
@@ -97,8 +104,8 @@ def recover(request):
 
 def cadastro(request):
 	invalid = False
+	form = RegisterForm(request.POST)
 	if request.method == 'POST':
-		form = RegisterForm(request.POST)
 		if form.is_valid():
 			try:
 				unidade = Unidade.objects.get(id = request.POST.get('unidade'))

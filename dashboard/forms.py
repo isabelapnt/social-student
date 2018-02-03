@@ -62,9 +62,10 @@ class RegisterForm(forms.Form):
             error = "Esse nome não é válido."
             self.add_error('full_name', error)
         except:
-            if full_name.count(" ") == 0:
-                error = "Digite nome e sobrenome."
-                self.add_error('full_name', error)
+            if full_name :
+                if full_name.count(" ") == 0 :
+                    error = "Digite nome e sobrenome."
+                    self.add_error('full_name', error)
             
             
         user = Usuario.objects.filter(email=cleaned_data.get("email"))
