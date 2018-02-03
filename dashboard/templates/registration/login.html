@@ -167,35 +167,36 @@
                         </div>
                     </div>
                 </form>
-                <div id="test"> 
+<!--                 <div id="test"> 
                  <form action="">
                     <input type="email" id="email" name="email" v-model="email">
                     <div><button type="submit" type="submit" v-bind:disabled="send">Submit</button></div>
                 </form>
-                </div>
+                </div> -->
             </div>
 </div>
 {% endblock %}
 {% block extra_js %}
-  <script type="text/javascript">
-    new Vue({
-        el: '#test',
-        data: {
-          email: ''
-        },
-        computed: {
-          send: function () {
-            this.ajaxRequest = true;
-            this.$http.post('{% url "recover" %}', {
-                  domain: this.domain
-                }, function (data, status, request) {
-                    this.postResults = data;
+<script src="{% static 'js/login.js' %}"></script>
+<!-- <script type="text/javascript">
+  new Vue({
+      el: '#test',
+      data: {
+        email: ''
+      },
+      computed: {
+        send: function () {
+          this.ajaxRequest = true;
+          this.$http.post('{% url "recover" %}', {
+                domain: this.email
+              }, function (data, status, request) {
+                  this.postResults = data;
 
-                    this.ajaxRequest = false;
-                });
-          }}
-          }
+                  this.ajaxRequest = false;
+              });
+        }}
         }
-    })
-  </script>
+      }
+  })
+</script> -->
 {% endblock %}
