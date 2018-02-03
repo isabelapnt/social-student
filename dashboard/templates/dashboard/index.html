@@ -30,20 +30,26 @@
                                 <div style="overflow:hidden;background:#fff url('{{servico.imagem.url}}') center no-repeat ; width:100%; height:164px">
                                 </div>
                             {% else %}
-                                <img class="card-img-top" src="{% static 'assets/images/background/profile-bg.jpg' %}" alt="Card image cap">
+                                <img class="card-img-top" src="{% static 'assets/images/background/profile-bg.jpg' %}" alt="Card image cap" style="width:100%;">
                             {%endif%}
                             <div class="card-block little-profile text-center">
-                                <!-- <div class="pro-img"><img src="{% static 'assets/images/users/4.jpg' %}" alt="user" /></div> -->
-                                <h3 class="m-b-0">{{servico.nome}}</h3>
-                                <p>Criado por : {{servico.criado_por}}</p>
-                                <!-- <a href="javascript:void(0)" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded">Participar</a> -->
-                                <div class="row text-center m-t-20">
-                                    <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h3 class="m-b-0 font-light">{{servico.unidade.nome}}</h3><small>Unidade</small></div>
-                                    <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h3 class="m-b-0 font-light">{{servico.get_qauntidade_post}}</h3><small>Post</small></div>
-                                    <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h3 class="m-b-0 font-light">{{servico.usuario.count}}</h3><small>Participantes</small></div>
+                                 <div class="message-box contact-box">
+                                    <h2 class="add-ct-btn">
+                                        <a data-original-title="Deixar de Participar" data-toggle="tooltip" >
+                                            <button type="button" class="btn btn-circle btn-lg btn-danger waves-effect waves-dark"  onclick="deixar_servico(this, {{servico.id}} )">x</button>
+                                        </a>
+                                    </h2>
+                                    <h3 class="m-b-0">{{servico.nome}}</h3>
+                                    <p>Criado por : {{servico.criado_por}}</p>
+                                    <!-- <a href="javascript:void(0)" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded">Participar</a> -->
+                                    <div class="row text-center m-t-20">
+                                        <div class="col-lg-4 col-md-4 m-t-20">
+                                            <h3 class="m-b-0 font-light">{{servico.unidade.nome}}</h3><small>Unidade</small></div>
+                                        <div class="col-lg-4 col-md-4 m-t-20">
+                                            <h3 class="m-b-0 font-light">{{servico.get_qauntidade_post}}</h3><small>Post</small></div>
+                                        <div class="col-lg-4 col-md-4 m-t-20">
+                                            <h3 class="m-b-0 font-light">{{servico.usuario.count}}</h3><small>Participantes</small></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -52,3 +58,26 @@
         {% endfor %}
     </div>
 {% endblock %}             
+ {% block extra_js %}
+ <script type="text/javascript">
+function deixar_servico(elem, servico_id) {
+    // $( "#participar" ).click(function() {
+    swal("Você tem certeza que deseja deixar de participar deste serviço?", {
+          buttons: ["Não", "Sim"],
+        }).then((value) => {
+          switch (value) {
+            
+            case true:
+                window.location.href = "servico/deixar_servico/" + servico_id
+
+            default:
+                console.log(value)
+          }
+        });
+// })
+}
+
+// você pode invocar métodos no JavaScript também
+
+ </script>
+{% endblock %}

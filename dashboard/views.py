@@ -23,7 +23,7 @@ from core.rh.decorators import login_required_custom
 @login_required_custom
 def home(request):
     aluno = Aluno.objects.get(email = request.session["email"])
-    servicos = aluno.servico_usuario.all()
+    servicos = Servico.objects.filter(usuario= aluno)
     template = loader.get_template('dashboard/index.html')
     context = {
         'servicos': servicos,
@@ -44,10 +44,13 @@ def servicos(request):
 
 @login_required_custom
 def participar(request, id_servico):
+    print "passsou"
+    print id_servico
     servico = Servico.objects.get(id = id_servico)
     aluno = Aluno.objects.get(email = request.session["email"])
     servico.usuario.add(aluno)
     servico.save()
+
     return HttpResponseRedirect("/servico/posts/" + servico.slug)
 
 @login_required_custom

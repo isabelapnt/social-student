@@ -63,6 +63,14 @@ def criar_servico(request):
 	return HttpResponse(template.render(context, request))
 
 @login_required_custom
+def leave_servico(request, id_servico):
+	servico = Servico.objects.get(id = id_servico)
+	aluno = Aluno.objects.get(email = request.session["email"])
+	servico.usuario.remove(aluno)
+	servico.save()
+	return HttpResponseRedirect("/")
+
+@login_required_custom
 def save_servico(request):
 	if request.method == 'POST':	
 		tags = request.POST.get('tag')

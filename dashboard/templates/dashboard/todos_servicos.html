@@ -31,8 +31,8 @@
                         <div class="card-block little-profile text-center">
                             <div class="message-box contact-box">
                                 <h2 class="add-ct-btn">
-                                    <a href="{% url 'participar' servico.id %}" data-original-title="Participar" data-toggle="tooltip">
-                                        <button type="button" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button>
+                                    <a data-original-title="Participar" data-toggle="tooltip" >
+                                        <button type="button" class="btn btn-circle btn-lg btn-success waves-effect waves-dark" onclick="participar(this, {{servico.id}} )" >+</button>
                                     </a>
                                 </h2>
                                 <h3 class="m-b-0">{{servico.nome}}</h3>
@@ -54,3 +54,27 @@
         {% endfor %}
     </div>
 {% endblock %}             
+{% block extra_js %}
+<script type="text/javascript">
+function participar(elem, servico_id) {
+    // $( "#participar" ).click(function() {
+    swal("Você deseja fazer parte deste serviço?", {
+          buttons: ["Não", "Sim"],
+        }).then((value) => {
+          switch (value) {
+            
+            case true:
+                window.location.href = "../participar/" + servico_id
+
+            default:
+                console.log(value)
+          }
+        });
+// })
+}
+
+
+
+
+ </script>
+{% endblock %}
