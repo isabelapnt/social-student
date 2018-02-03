@@ -44,6 +44,7 @@ class RegisterForm(forms.Form):
     repassword = forms.CharField(max_length=8, 
                                 required=True,
                                 widget=forms.PasswordInput(attrs={'class': 'form-control',}))
+    imagem = forms.ImageField(required=False,)
 
     def clean(self):
         cleaned_data = super(RegisterForm, self).clean()

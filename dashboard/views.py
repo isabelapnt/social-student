@@ -100,6 +100,7 @@ def social_login(request):
                 request.session['email'] = user.email
                 request.session['first_name'] = user.first_name
                 request.session['last_name'] = user.last_name
+                request.session['imagem'] = user.imagem.url
                 request.session['accessed'] = True
 
                 auth_user = authenticate(username=user.username, password=request.POST.get('password'))

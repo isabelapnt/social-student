@@ -1,10 +1,12 @@
-# coding:utf-8
+# -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 from core.rh.models import Aluno, Unidade, Curso
 from django import forms
 from django.db import IntegrityError
-
+import sys  
+reload(sys)  
+sys.setdefaultencoding('utf8')
 
 class PerfilForm(forms.ModelForm):
 
@@ -33,7 +35,7 @@ class PerfilForm(forms.ModelForm):
         dict_curso = {}
         cursos = Curso.objects.all()
         for curso in cursos:
-          dict_curso[curso.id] = curso.nome
+          dict_curso[curso.id] = curso.nome.encode('ascii', 'ignore').decode('ascii')
         CHOICES = tuple(dict_curso.items())
 
         curso = forms.ChoiceField(choices=CHOICES,

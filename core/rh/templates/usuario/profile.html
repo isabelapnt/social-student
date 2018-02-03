@@ -22,7 +22,12 @@
     <div class="col-lg-4 col-xlg-3 col-md-5">
         <div class="card">
             <div class="card-block">
-                <center class="m-t-30"> <img src="{% static 'assets/images/users/5.jpg' %}" class="img-circle" width="150" />
+                <center class="m-t-30">
+                {% if request.session.imagem %}
+                    <img src="{{request.session.imagem}}" alt="user" style="border-radius: 65%;height: 160px;width: 47%;" />
+                {% else %}
+                    <img src="{% static 'assets/images/users/default-profile.jpg' %}" alt="user"  width="150" class="img-circle"/>
+                {% endif %}
                     <h4 class="card-title m-t-10">{{request.session.first_name}} {{request.session.last_name}}</h4>
                 </center>
             </div>

@@ -83,7 +83,14 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'assets/images/users/5.jpg' %}" alt="user" class="profile-pic m-r-10" />{{request.session.first_name}} {{request.session.last_name}}</a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {% if request.session.imagem %}
+                                    <img src="{{request.session.imagem}}" alt="user" class="profile-pic m-r-10" />
+                                {% else %}
+                                    <img src="{% static 'assets/images/users/default-profile.jpg' %}" alt="user" class="profile-pic m-r-10"/>
+                                {% endif %}
+                                {{request.session.first_name}} {{request.session.last_name}}
+                            </a>
                         </li>
                     </ul>
                 </div>

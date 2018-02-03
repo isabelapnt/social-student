@@ -93,7 +93,6 @@ def cadastro(request):
 		form = RegisterForm(request.POST)
 		if form.is_valid():
 			try:
-
 				unidade = Unidade.objects.get(id = request.POST.get('unidade'))
 				curso = Curso.objects.get(id = request.POST.get('curso'))
 				first_name, last_name = request.POST.get('full_name').split(" ")[0], request.POST.get('full_name').split(" ")[-1:][0]
@@ -105,7 +104,8 @@ def cadastro(request):
 					email = email,
 					unidade = unidade,
 					curso = curso,
-					password = senha)
+					password = senha, 
+					imagem = request._files.get("imagem"))
 				
 				# return HttpResponseRedirect("/")
 				response_redirect = request.GET.get("next", HttpResponseRedirect("/"))

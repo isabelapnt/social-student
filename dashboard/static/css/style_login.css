@@ -104,6 +104,18 @@ a.link {
 .img-rounded {
   border-radius: 4px; }
 
+.pro-img{
+    margin-top: -80px;
+    margin-bottom: 20px;
+}
+
+.pro-img img{
+      width: 128px;
+    height: 128px;
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 100%;
+}
 html body .mdi:before, html body .mdi-set {
   line-height: initial; }
 
