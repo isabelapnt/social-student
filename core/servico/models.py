@@ -27,8 +27,11 @@ class Servico(models.Model):
     has_anexo = models.BooleanField(default=False)
     unidade = models.ForeignKey(Unidade, null=True, blank=True, related_name="servico_unidade")   
     usuario = models.ManyToManyField(Usuario, blank=True, related_name="servico_usuario")
-    def __unicode__(self):
-        return u"{nome}".format(nome =self.nome)
+    # def __unicode__(self):
+    #     return u"{nome}".format(nome =self.nome)
+
+    def __str__(self):
+        return u'%s' % (self.nome)
 
     def get_qauntidade_post(self):
         return self.post_servico.count()
