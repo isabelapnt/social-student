@@ -36,8 +36,8 @@ class Unidade(Endereco):
     #     upload_to='uploads/unidade/img/thumbnail',
     # )
 
-    def __unicode__(self):
-            return u'%s'%(self.nome)
+    def __str__(self):
+        return u'%s' % (self.nome)
 
 
 class Usuario(User):
