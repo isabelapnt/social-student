@@ -31,6 +31,9 @@ class Servico(models.Model):
     def __str__(self):
         return u'%s' % (self.nome)
 
+    def __unicode__(self):
+        return u'%s' % (self.nome)
+
     def get_qauntidade_post(self):
         return self.post_servico.count()
 

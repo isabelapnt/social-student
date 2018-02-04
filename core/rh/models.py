@@ -39,6 +39,9 @@ class Unidade(Endereco):
     def __str__(self):
         return u'%s' % (self.nome)
 
+    def __unicode__(self):
+        return u'%s' % (self.nome)
+
 
 class Usuario(User):
 
