@@ -7,8 +7,8 @@ class ServicoForm(forms.Form):
 
     nome = forms.CharField(max_length=50, required=True)
     resumo = forms.CharField(widget=forms.Textarea(),required=True)
+    imagem = forms.ImageField(required=False,)
     dict_tag = {}
-    
     # tags = Tags.objects.all()
     # for tag in tags:
     #       dict_tag[tag.id] = tag.nome

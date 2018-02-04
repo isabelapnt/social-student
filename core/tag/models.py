@@ -13,4 +13,7 @@ class Tags(models.Model):
     nome = models.CharField(max_length=200, verbose_name=u"nome", unique= True)
 
     def __unicode__(self):
-        return u"{nome}".format(nome =self.nome)
+        return u'%s' % (self.nome)
+
+    def __str__(self):
+        return u'%s' % (self.nome)

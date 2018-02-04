@@ -89,6 +89,8 @@ def save_servico(request):
 			unidade = user.unidade
 			)
 		servico.usuario.add(user)
+		if request._files.get("imagem") != None:
+			servico.imagem = request._files.get("imagem")
 		servico.save()
 
 		for id_tag in tags:
