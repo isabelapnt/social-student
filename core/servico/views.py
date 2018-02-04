@@ -33,6 +33,8 @@ class ServicoDetailView(DetailView):
 @login_required_custom
 def novo_post(request, id_servico):
 	if request.method == 'POST':	
+		print "oiiio"
+
 		servico = Servico.objects.get(id = id_servico)
 		user = Aluno.objects.get(email=request.session["email"])
 		titulo = request.POST.get('titulo')
@@ -44,8 +46,10 @@ def novo_post(request, id_servico):
 			titulo = titulo,
 			conteudo = conteudo
 			)
-
-
+		
+		# for file in request.FILES['files[]']:
+		# 	post.galeria.add(file)
+		# post.save()
 	return HttpResponseRedirect("/servico/posts/"+ servico.slug)
 
 @login_required_custom
