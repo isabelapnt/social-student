@@ -27,10 +27,12 @@ def perfil(request):
 	request.session['last_name'] = request.user.last_name
 	try:
 		aluno = Aluno.objects.get(email = request.user.email)
+		request.session['unidade'] = aluno.unidade.nome
 		servicos = Servico.objects.filter(usuario = aluno)
 		template = loader.get_template('dashboard/index.html')
 		context = {
 			'servicos': servicos,
+			'user' : aluno
 		}
 
 	except Exception as e:
@@ -58,13 +60,15 @@ def save_perfil(request):
 						aluno.imagem = request._files.get("imagem")
 						request.session['imagem'] = aluno.imagem.url
 						aluno.save()
+					request.session['unidade'] = aluno.unidade.nome
 				else:
+					aluno = Aluno.objects.get(email=request.session["email"])
 					if request._files.get("imagem") != None:
-						aluno = Aluno.objects.get(email=request.session["email"])
 						aluno.imagem = request._files.get("imagem")
-						aluno.unidade = unidade
 						aluno.save()
-						request.session['imagem'] = aluno.imagem.url	
+						request.session['imagem'] = aluno.imagem.url
+					aluno.unidade = unidade
+					aluno.save()
 				return HttpResponseRedirect("/")
 			except ValidationError as validationError:
 				for field, errors in validationError.message_dict.iteritems():

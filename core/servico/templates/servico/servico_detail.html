@@ -2,14 +2,8 @@
 
 {% load widget_tweaks %}
 {% load compress static %}
-
-{% block extra_css %}
- <style type="text/css">
-   #image_preview img{
-    width: 100%
-   }
- </style>
-{% endblock %}
+ {% block extra_css %}
+    {% endblock %}
 {% block conteudo %}
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
@@ -132,11 +126,9 @@
  <form action="upload_file.php" method="post" enctype="multipart/form-data">
   <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
  </form>
- <div class="row" id="image_preview" style="width: 10%">
-
- </div>
-</div> -->
+ <div id="image_preview" style="width: 10%"></div>
 </div>
+</div> -->
 
 {% endblock %}             
 {% block extra_js %}
@@ -199,7 +191,7 @@ function preview_image()
  var total_file=document.getElementById("upload_file").files.length;
  for(var i=0;i<total_file;i++)
  {
-  $('#image_preview').append("<div class='col-md-6' ><img src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
+  $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'><br>");
  }
 }
 </script>
