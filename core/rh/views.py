@@ -54,15 +54,17 @@ def save_perfil(request):
 				if not Aluno.objects.filter(email=request.session["email"]):
 					Aluno.objects.create(email=request.session["email"], first_name=request.session["first_name"], last_name=request.session["last_name"], unidade=unidade)
 					aluno = Aluno.objects.get(email=request.session["email"])
-					aluno.imagem = request._files.get("imagem")
-					aluno.save()
-					request.session['imagem'] = aluno.imagem.url
+					if request._files.get("imagem") != None:
+						aluno.imagem = request._files.get("imagem")
+						request.session['imagem'] = aluno.imagem.url
+						aluno.save()
 				else:
-					aluno = Aluno.objects.get(email=request.session["email"])
-					aluno.imagem = request._files.get("imagem")
-					aluno.unidade = unidade
-					aluno.save()
-					request.session['imagem'] = aluno.imagem.url	
+					if request._files.get("imagem") != None:
+						aluno = Aluno.objects.get(email=request.session["email"])
+						aluno.imagem = request._files.get("imagem")
+						aluno.unidade = unidade
+						aluno.save()
+						request.session['imagem'] = aluno.imagem.url	
 				return HttpResponseRedirect("/")
 			except ValidationError as validationError:
 				for field, errors in validationError.message_dict.iteritems():
@@ -120,8 +122,11 @@ def cadastro(request):
 					email = email,
 					unidade = unidade,
 					curso = curso,
-					password = senha, 
-					imagem = request._files.get("imagem"))
+					password = senha)
+				if request._files.get("imagem") != None:
+						aluno.imagem = request._files.get("imagem")
+						aluno.unidade = unidade
+						aluno.save()
 				
 				# return HttpResponseRedirect("/")
 				response_redirect = request.GET.get("next", HttpResponseRedirect("/"))

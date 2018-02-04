@@ -23,7 +23,7 @@ from core.rh.decorators import login_required_custom
 @login_required_custom
 def home(request):
     aluno = Aluno.objects.get(email = request.session["email"])
-    servicos = Servico.objects.filter(usuario= aluno)
+    servicos = Servico.objects.filter(usuario= aluno, ativo = True)
     template = loader.get_template('dashboard/index.html')
     context = {
         'servicos': servicos,

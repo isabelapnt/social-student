@@ -26,7 +26,7 @@
   <button data-izimodal-open="#modal-custom"  type="button" class="btn waves-effect waves-light btn-lg btn-success pull-right" style="margin-bottom: 1%; ">Criar Post</button>
   </div>
 </div>
-<button data-izimodal-open="#modal-custom" type="button" class="waves-effect btn-success btn btn-circle btn-sm pull-right m-l-10" style="position: fixed;bottom: 20px;right: 20px;padding: 25px;"><i class="mdi mdi-grease-pencil" style="top: 18px;left: 18px;position: absolute;"></i></button>
+<button data-izimodal-open="#modal-custom" type="button" class="waves-effect btn-success btn btn-circle btn-sm pull-right m-l-10" style="position: fixed;bottom: 20px;right: 20px;padding: 25px;"><b style="top: 19px;left: 21px;position: absolute;">+</b></button>
 {% for post in object.post_servico.all|dictsort:"data_cadastro" reversed %}
 <div class="row">
     <div class="col-lg-11 col-xlg-12 col-md-10">
@@ -120,9 +120,7 @@
             </form>
         </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger waves-effect text-left" data-iziModal-close class="icon-close">Close</button>
-    </div>
+
 </div>
 
 {% endblock %}             

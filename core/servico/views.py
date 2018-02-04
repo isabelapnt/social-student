@@ -96,4 +96,6 @@ def save_servico(request):
 			servico.tag.add(tag)
 			servico.save()
 
-	return HttpResponseRedirect("/servicos")
+
+	response_redirect = request.GET.get("next", HttpResponseRedirect("/"))
+	return HttpResponse("<script type='text/javascript'>alert('O Serviço foi encaminhado para moderação, em breve você receberá um retorno :D');window.location.href='{}'</script>".format(response_redirect))

@@ -40,7 +40,7 @@
                   </div>
                 </form>
 
-                <form class="email-signup form-horizontal form-material" action="{% url 'cadastro' %}?next={{request.path}}" enctype="multipart/form-data"  method="post" id="cadastro_form">
+                <form class="email-signup form-horizontal form-material" action="{% url 'cadastro' %}?next={{/}}" enctype="multipart/form-data"  method="post" id="cadastro_form">
                  {% csrf_token %}
                   <div class="form-group">
                     <div class="col-md-12">
