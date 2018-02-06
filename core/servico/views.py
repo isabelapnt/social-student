@@ -91,14 +91,16 @@ def save_servico(request):
 			unidade = user.unidade
 			)
 		servico.usuario.add(user)
+		
 		if request._files.get("imagem") != None:
 			servico.imagem = request._files.get("imagem")
 		servico.save()
 
-		for id_tag in tags:
-			tag = Tags.objects.get(id = int(id_tag))
-			servico.tag.add(tag)
-			servico.save()
+		if tags is not None:
+			for id_tag in tags:
+				tag = Tags.objects.get(id = int(id_tag))
+				servico.tag.add(tag)
+				servico.save()
 
 
 	response_redirect = request.GET.get("next", HttpResponseRedirect("/"))

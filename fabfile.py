@@ -25,14 +25,14 @@ def config_db():
 
 
 def collect():
-    local("./manage.py collectstatic --noinput")
-    # local("./manage.py collectmedia --noinput")
+    # local("./manage.py collectstatic --noinput")
+    local("./manage.py collectmedia --noinput")
 
 
 def dev():
     flush()
     migrations()
-    # collect()
+    collect()
     fix("super_user")
     fix("unidade_curso")
     fix("tag")
