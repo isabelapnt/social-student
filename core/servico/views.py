@@ -26,7 +26,6 @@ class ServicoDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ServicoDetailView, self).get_context_data(**kwargs)
         context['form'] = PostForm()
-        # # context['now'] = timezone.now()
         return context    
 
 
