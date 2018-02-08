@@ -10,6 +10,6 @@ class CommentaryForm(forms.Form):
 
     descricao = forms.CharField(required=True,
                              max_length=50,
-                             widget=forms.Textarea({'placeholder':"Comente"}))
+                             widget=forms.TextInput({'placeholder':"Comente"}))
 
            

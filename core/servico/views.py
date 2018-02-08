@@ -13,8 +13,9 @@ from core.post.models import Post
 from django.template import loader
 from django.http import HttpResponseRedirect, HttpResponse
 from core.tag.models import Tags
-
+from django.conf import settings
 from core.comentario.forms import CommentaryForm
+from core.galeria.models import Imagens, Galeria
 # Create your views here.
 
 class ServicoDetailView(DetailView):
@@ -32,9 +33,11 @@ class ServicoDetailView(DetailView):
         return context    
 
 
+
 @login_required_custom
 def novo_post(request, id_servico):
 	if request.method == 'POST':	
+		# print(request.__dict__)
 		servico = Servico.objects.get(id = id_servico)
 		user = Aluno.objects.get(email=request.session["email"])
 		titulo = request.POST.get('titulo')
@@ -47,9 +50,17 @@ def novo_post(request, id_servico):
 			conteudo = conteudo
 			)
 
-		# for file in request.FILES['files[]']:
-		# 	post.galeria.add(file)
-		# post.save()
+		galeria = Galeria.objects.create(titulo = post.titulo)
+		for count, file in enumerate(request.FILES.getlist('file')):
+			Imagens.objects.create(imagem = file, galeria = galeria)
+			
+		post.galeria = galeria
+		post.save()
+			# def process(f):
+			# 	with open (settings.MEDIA_ROOT + "/post/img/file_" + str(count), 'wb+') as destination:
+			# 		for chunk in f.chunks():
+			# 			destination.write(chunk)
+			# process(x)
 	return HttpResponseRedirect("/servico/posts/"+ servico.slug)
 
 @login_required_custom
