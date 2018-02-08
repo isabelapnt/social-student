@@ -5,7 +5,6 @@ from core.rh.models import Aluno, Unidade, Curso
 from django import forms
 from django.db import IntegrityError
 
-
 class PerfilForm(forms.Form):
     model = Aluno
 

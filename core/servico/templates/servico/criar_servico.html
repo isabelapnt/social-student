@@ -2,6 +2,13 @@
 
 {% load widget_tweaks %}
 {% load compress static %}
+{% block extra_css %}
+<style type="text/css">
+ .border_input{
+      background-size: 100% 2px, 100% 1px !important;
+ }
+</style>
+{% endblock %}
 {% block conteudo %}
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
@@ -30,17 +37,17 @@
                     <div class="form-group">
                         <label class="col-md-12">Nome</label>
                         <div class="col-md-12">
-                            {{form.nome | add_class:"form-control form-control-line" }}
+                            {{form.nome | add_class:"form-control form-control-line border_input" }}
                         </div>
                     </div>
                     <div class="form-group">
                       <label>Imagem de capa</label>
-                      {{form.imagem | add_class:"form-control form-control-line"}}
+                      {{form.imagem | add_class:"form-control form-control-line border_input"}}
                     </div>
                     <div class="form-group">
                         <label class="col-md-12">Resumo</label>
                         <div class="col-md-12">
-                            {{form.resumo | add_class:"form-control form-control-line" }}
+                            {{form.resumo | add_class:"form-control form-control-line border_input" }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -58,7 +65,7 @@
                       <div class="form-group col-md-4">
                         <label class="col-md-12">Unidade atual:</label>
                         <div class="col-md-12">
-                            <input type="text" value="{{user.unidade.nome}}" class="form-control form-control-line" disabled>
+                            <input type="text" value="{{user.unidade.nome}}" class="form-control form-control-line " disabled>
                         </div>
                     </div>
                       <div class="form-group col-md-4">

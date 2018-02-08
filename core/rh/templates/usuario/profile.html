@@ -3,6 +3,13 @@
 {% load widget_tweaks %}
 {% load compress static %}
 
+{% block extra_css %}
+<style type="text/css">
+ .border_input{
+      background-size: 100% 2px, 100% 1px !important;
+ }
+</style>
+{% endblock %}
 {% block conteudo %}
 
 <div class="row page-titles">
@@ -50,23 +57,23 @@
                     <div class="form-group">
                         <label class="col-md-12">Nome completo</label>
                         <div class="col-md-12">
-                            <input type="text" placeholder="" class="form-control form-control-line" value="{{request.session.first_name}} {{request.session.last_name}}" disabled>
+                            <input type="text" placeholder="" class="form-control form-control-line border_input" value="{{request.session.first_name}} {{request.session.last_name}}" disabled>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Imagem de Perfil</label>
-                        {{form_perfil.imagem | add_class:"form-control form-control-line"}}
+                        {{form_perfil.imagem | add_class:"form-control form-control-line border_input"}}
                     </div>
                     <div class="form-group">
                         <label for="example-email" class="col-md-12">Trocar foto:</label>
                         <div class="col-md-12">
-                            <input type="email" placeholder="" class="form-control form-control-line" value="{{request.session.email}} " disabled>
+                            <input type="email" placeholder="" class="form-control form-control-line border_input" value="{{request.session.email}} " disabled>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-12">Selecione a Unidade</label>
                         <div class="col-sm-12">
-                            {{form_perfil.unidade | add_class:"form-control form-control-line" }}
+                            {{form_perfil.unidade | add_class:"form-control form-control-line border_input" }}
                             {% if form_perfil.unidade.errors %}
                                 {{ form_perfil.unidade.errors }}
                             {% endif%}

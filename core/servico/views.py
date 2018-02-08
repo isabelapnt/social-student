@@ -13,6 +13,8 @@ from core.post.models import Post
 from django.template import loader
 from django.http import HttpResponseRedirect, HttpResponse
 from core.tag.models import Tags
+
+from core.comentario.forms import CommentaryForm
 # Create your views here.
 
 class ServicoDetailView(DetailView):
@@ -26,6 +28,7 @@ class ServicoDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ServicoDetailView, self).get_context_data(**kwargs)
         context['form'] = PostForm()
+        context['form_comment'] = CommentaryForm
         return context    
 
 

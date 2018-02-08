@@ -27,7 +27,7 @@ class Command(BaseCommand):
     sevico_3 = Servico.objects.create(nome=u"Estágios/Empregos", criado_por = "Nicole Andrade", resumo = "encontre vagas de emprego e estágios", ativo=True, unidade = unidade_2, imagem="uploads/servico/img/job.jpg")
 
 
-    unidade_3 = Unidade.objects.all()[1]
+    unidade_3 = Unidade.objects.all()[2]
     sevico_1 = Servico.objects.create(nome=u"Alguel coletivo", criado_por = "Isabela Pinto", resumo = "Aluguel coletivo", ativo=True, unidade = unidade_3, imagem="uploads/servico/img/collective.jpeg")
     sevico_2 = Servico.objects.create(nome=u"Eventos", criado_por = "Ivan Machado", resumo="Serviço destinado para eventos", ativo=True, unidade = unidade_3, imagem="uploads/servico/img/event.jpg")
     sevico_3 = Servico.objects.create(nome=u"Banco de Provas",criado_por = "Nathale Silva", resumo = "Banco de provas" , ativo=True, unidade = unidade_3, imagem="uploads/servico/img/test.jpeg")

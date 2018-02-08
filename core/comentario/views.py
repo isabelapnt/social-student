@@ -15,7 +15,7 @@ def comentar(request, id_post, id_servico):
 	if request.method == 'POST':	
 		servico = Servico.objects.get(id = id_servico)
 		post = Post.objects.get(id = id_post)
-		descricao = request.POST.get('comentario')
+		descricao = request.POST.get('descricao')
 		user = Aluno.objects.get(email=request.session["email"])
 		Comentario.objects.create(
 			usuario = user,

@@ -13,6 +13,11 @@
  border: 2px solid;
  margin: 10px 10px 0 0;
  padding: 1px;
+
+ }
+
+ .border_input{
+      background-size: 100% 2px, 100% 1px !important;
  }
 </style>
 {% endblock %}
@@ -86,7 +91,7 @@
                                         {% csrf_token %}
                                         <div class="row">
                                             <div class="col-11">
-                                                <input type="text" placeholder="Comente..." class="form-control form-control-line"  name="comentario" >
+                                              {{form_comment.descricao | add_class:"form-control form-control-line border_input"}}
                                             </div>
                                             <div class="col-1">
                                                 <button type="submit" class="btn btn-info btn-circle btn-lg"><i class="fa fa-paper-plane-o"></i> </button>
@@ -117,13 +122,13 @@
                 <div class="form-group">
                     <label class="col-md-12">Titulo</label>
                     <div class="col-md-12">
-                        {{ form.titulo | add_class:"form-control form-control-line" }}
+                        {{ form.titulo | add_class:"form-control form-control-line border_input" }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="example-email" class="col-md-12">Conteúdo</label>
                     <div class="col-md-12">
-                        {{form.conteudo | add_class:"form-control" }}
+                        {{form.conteudo | add_class:"form-control border_input" }}
                     </div>
                 </div>
 <!--                 {% if object.has_carrosel %}
