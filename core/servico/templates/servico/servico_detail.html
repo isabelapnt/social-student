@@ -20,6 +20,16 @@
       background-size: 100% 2px, 100% 1px !important;
  }
 
+ .conteudo{
+  text-align: justify;
+ }
+
+.center_img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 20%;
+}
 </style>
 {% endblock %}
 {% block conteudo %}
@@ -67,21 +77,36 @@
                                         <hr class="">
                                     </p>
                                 </div>
-                               
                                     <div class="slider-for" style="width: 38%; margin: 2% auto;"">
-                                      {% for imagem in post.galeria.imagem_galeria.all %}
-                                        <div><img src="{{imagem.imagem.url}}"  alt="post" ></div>
-                                      {% endfor %}
+                                      
                                     </div>
-                                     <div class="carousel_nav" style="width: 34%; margin: 1% auto;">
-                                      {% for imagem in post.galeria.imagem_galeria.all %}
-                                        <div><img src="{{imagem.imagem.url}}"  alt="post" ></div>
-                                      {% endfor %}
+                                    {% if object.has_carrossel %}
+                                    <div class="col-md-12">
+                                      <div class="carousel_home" style="width: 34%; margin: 1% auto;">
+                                          {% for imagem in post.galeria.imagem_galeria.all %}
+                                            <div><img src="{{imagem.imagem.url}}"  alt="post" ></div>
+                                          {% endfor %}
+                                      </div>
+<!--                                        <div class="carousel_nav" style="width: 38%; margin: 2% auto;">
+                                          {% for imagem in post.galeria.imagem_galeria.all %}
+                                            <div><img src="{{imagem.imagem.url}}"></div>
+                                          {% endfor %}
+                                      </div> -->
+                                  </div>
+                                  {% else %}
+                                    <div>
+                                      {% if post.galeria.imagem_galeria.first.imagem %}
+                                        <img class="center_img" src="{{post.galeria.imagem_galeria.first.imagem.url}}" alt="Card image cap">
+                                      {% endif %}
+                                    </div>
+                                  {% endif %}
                                   </div>
 
-                                </div>
-                                <p> {{post.conteudo}} </p> 
-                            </div>
+                                
+                                <div class="col-md-12" style="margin-bottom: 5%;">
+                                  <p class="conteudo"> {{post.conteudo}} </p> 
+                                </div>  
+                            <!-- </div> -->
                             <div class="like-comm">
                                 <h4 class="card-title">Comentários:</h4> 
                                     <div class="message-box">
@@ -120,6 +145,7 @@
                                     </form>
                                 </div>
                             </div>
+                            </div>
                     </div>
             </div>
         </div>
@@ -129,8 +155,10 @@
 
 
 <div class="modal-content" id="modal-custom" data-iziModal-group="grupo1" >
-    <div class="modal-header">
-        <h4 class="modal-title" id="myLargeModalLabel">Criar Post</h4>
+    <div class="modal-header card-block bg-info"">
+          <h4 class="text-white card-title">Criar Post</h4>
+     
+        <!-- <h4 class="modal-title" id="myLargeModalLabel">Criar Post</h4> -->
         <button type="button" class="close" data-iziModal-close class="icon-close" aria-hidden="true">×</button>
     </div>
     <div class="modal-body">
@@ -151,10 +179,14 @@
                 </div>
                 {% if object.has_carrosel %}
                  <div class="form-group">
-                    <label for="example-email" class="col-md-12">Adicione iamgens:</label>
+                    <label for="example-email" class="col-md-12">Selecione as iamgens:</label>
                     <input type="file" name="file" multiple />
                   </div>
                 {% else %}
+                <div class="form-group">
+                    <label for="example-email" class="col-md-12">Imagem de capa:</label>
+                     {{form.file | add_class:"form-control border_input" }}
+                  </div>
                 {% endif %}
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -221,21 +253,22 @@
 
 <script type="text/javascript">
 
- $('.slider-for').slick({
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-  fade: true,
-  asNavFor: '.slider-nav'
-});
-$('.slider-nav').slick({
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  asNavFor: '.slider-for',
-  dots: true,
-  centerMode: true,
-  focusOnSelect: true
-});
+  $(document).ready(function(){
+    $('.carousel_home').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+    });
+    // $('.carousel_nav').slick({
+    //   slidesToShow: 3,
+    //   slidesToScroll: 1,
+    //   asNavFor: '.carousel_home',
+    //   dots: true,
+    //   centerMode: true,
+    //   arrows: false,
+    //   focusOnSelect: true
+    // });
+  });
 </script>
 
 {% endblock %}

@@ -25,7 +25,7 @@ def config_db():
 
 
 def collect():
-    # local("./manage.py collectstatic --noinput")
+    local("./manage.py collectstatic --noinput")
     local("./manage.py collectmedia --noinput")
 
 

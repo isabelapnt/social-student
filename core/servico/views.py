@@ -52,6 +52,7 @@ def novo_post(request, id_servico):
 
 		galeria = Galeria.objects.create(titulo = post.titulo)
 		for count, file in enumerate(request.FILES.getlist('file')):
+			print (file)
 			Imagens.objects.create(imagem = file, galeria = galeria)
 			
 		post.galeria = galeria
@@ -84,6 +85,19 @@ def leave_servico(request, id_servico):
 	servico.usuario.remove(aluno)
 	servico.save()
 	return HttpResponseRedirect("/")
+
+@login_required_custom
+def meu_curso(request):
+	user = Aluno.objects.get(email=request.session["email"])
+	template = loader.get_template('servico/meu_curso.html')
+	context = {
+		'user': user,
+		'cursos': user.unidade.curso_unidade.all(),
+		'post' : Post.objects.all()[0]
+	}
+
+	return HttpResponse(template.render(context, request))
+
 
 @login_required_custom
 def save_servico(request):

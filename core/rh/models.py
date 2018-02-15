@@ -82,7 +82,7 @@ class Curso(models.Model):
         app_label = "rh"
 
     nome = models.TextField(max_length=50)
-    unidade = models.ForeignKey(Unidade)
+    unidade = models.ForeignKey(Unidade, related_name="curso_unidade")
 
     def __str__(self):
         return u'%s' % (self.nome)
