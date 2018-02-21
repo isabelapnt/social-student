@@ -27,6 +27,7 @@ def perfil(request):
 	request.session['last_name'] = request.user.last_name
 	try:
 		aluno = Aluno.objects.get(email = request.user.email)
+		request.session['imagem'] = aluno.imagem.url
 		request.session['unidade'] = aluno.unidade.nome
 		servicos = Servico.objects.filter(usuario = aluno)
 		template = loader.get_template('dashboard/index.html')
@@ -116,7 +117,7 @@ def cadastro(request):
 		if form.is_valid():
 			try:
 				unidade = Unidade.objects.get(id = request.POST.get('unidade'))
-				curso = Curso.objects.get(id = request.POST.get('curso'))
+				# curso = Curso.objects.get(id = request.POST.get('curso'))
 				first_name, last_name = request.POST.get('full_name').split(" ")[0], request.POST.get('full_name').split(" ")[-1:][0]
 				email = request.POST.get('email')
 				senha = request.POST.get('password')
@@ -125,7 +126,6 @@ def cadastro(request):
 					last_name = last_name,
 					email = email,
 					unidade = unidade,
-					curso = curso,
 					password = senha)
 				if request._files.get("imagem") != None:
 						aluno.imagem = request._files.get("imagem")

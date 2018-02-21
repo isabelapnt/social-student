@@ -25,3 +25,6 @@ class Comentario(models.Model):
 
     def __unicode__(self):
         return u"{data}".format(data =self.data_cadastro)
+
+    def __str__(self):
+        return u"{data}".format(data =self.data_cadastro)

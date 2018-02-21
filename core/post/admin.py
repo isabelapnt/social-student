@@ -5,6 +5,6 @@ from django.contrib import admin
 from core.post.models import *
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
-    fields = ('titulo', 'criado_por', 'conteudo', 'servico', 'galeria')
+    fields = ('titulo', 'criado_por', 'conteudo', 'servico', 'galeria', 'data_cadastro')
 
 admin.site.register(Post, PostAdmin)

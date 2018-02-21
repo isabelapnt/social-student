@@ -15,6 +15,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    
 
 SECRET_KEY = config('SECRET_KEY')
 
@@ -32,7 +33,7 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-ALLOWED_HOSTS = ['.localhost', '.herokuapp.com']
+ALLOWED_HOSTS = ['.localhost', '.herokuapp.com', '172.17.0.1']
 
 
 # Application definition
@@ -46,7 +47,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'compressor',
     'social_django',    
-    'django_media_fixtures',
     
     'core.rh',
     'core.servico',

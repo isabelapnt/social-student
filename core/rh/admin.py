@@ -14,7 +14,7 @@ class AdminAdmin(admin.ModelAdmin):
     fields = ('email', 'celular', 'unidade')
 
 class AlunoAdmin(admin.ModelAdmin):
-    fields = ('email', 'celular', 'unidade', 'matricula', 'servico')
+    fields = ('email', 'celular', 'unidade', 'imagem')
 
 admin.site.register(Unidade, UnidadeAdmin)
 admin.site.register(Usuario, UsuarioAdmin)

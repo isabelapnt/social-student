@@ -23,3 +23,6 @@ class Post(models.Model):
 
     def __unicode__(self):
         return u"{titulo}".format(titulo =self.titulo)
+
+    def __str__(self):
+        return u"{titulo}".format(titulo =self.titulo)

@@ -22,11 +22,11 @@ class RegisterForm(forms.Form):
 
     unidade = forms.ChoiceField(choices=CHOICES, required=True,)
 
-    dict_curso = {}
-    cursos = Curso.objects.all()
-    for curso in cursos:
-      dict_curso[curso.id] = curso.nome
-    CHOICES = tuple(dict_curso.items())
+    # dict_curso = {}
+    # cursos = Curso.objects.all()
+    # for curso in cursos:
+    #   dict_curso[curso.id] = curso.nome
+    # CHOICES = tuple(dict_curso.items())
 
 
     full_name = forms.CharField(max_length=50, 
@@ -38,8 +38,8 @@ class RegisterForm(forms.Form):
                                 required=True,
                                 widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     
-    curso = forms.ChoiceField(choices=CHOICES,
-                                required=True,)
+    # curso = forms.ChoiceField(choices=CHOICES,
+    #                             required=True,)
 
     repassword = forms.CharField(max_length=8, 
                                 required=True,
