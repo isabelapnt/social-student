@@ -9,6 +9,6 @@ from django.db import IntegrityError
 class CommentaryForm(forms.Form):
 
     descricao = forms.CharField(required=True,
-                             widget=forms.TextInput({'placeholder':"Comente"}))
+                             widget=forms.TextInput({'placeholder':"Comente...s"}))
 
            
