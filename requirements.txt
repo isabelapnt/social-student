@@ -11,8 +11,8 @@ cryptography==2.1.2
 dj-database-url==0.4.2
 Django==1.11.6
 django-appconf==1.0.2
+django-bootstrap-pagination==1.6.4
 django-compressor==2.2
-django-media-fixtures==0.0.3
 django-widget-tweaks==1.4.1
 docker-py==1.7.2
 dockerpty==0.4.1
